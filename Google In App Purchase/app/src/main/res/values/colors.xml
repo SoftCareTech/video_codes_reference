@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">  #009933</color>
+    <color name="colorPrimaryDark">#006622</color>
+    <color name="colorAccent">#1a8cff</color>
+    <color name="white">#ffff</color>
+    <!--  green 009900
+    ico color
+    blue 3300FF
+    green 00FF33
+    purple 9900FF
+    pink FF00FF
+     -->
+</resources>
