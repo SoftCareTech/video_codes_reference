@@ -1,0 +1,37 @@
+[versions]
+agp = "8.4.0"
+junit = "4.13.2"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
+appcompat = "1.6.1"
+material = "1.12.0"
+activity = "1.9.0"
+constraintlayout = "2.1.4"
+materialVersion = "1.13.0-alpha02"
+poi = "5.2.5"
+openxml4j = "1.0-beta"
+staxApi = "1.0-2"
+jsr173Ri = "1.0"
+xercesimpl = "2.12.2"
+
+[libraries]
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
+poi-ooxml = { group = "org.apache.poi", name = "poi-ooxml", version = "4.0.1" }
+google-material = { group = "com.google.android.material", name = "material", version.ref = "materialVersion" }
+poi = { group = "org.apache.poi", name = "poi", version = "4.0.1" }
+openxml4j = { group = "org.apache.poi", name = "openxml4j", version.ref = "openxml4j" }
+stax-api = { group = "javax.xml.stream", name = "stax-api", version.ref = "staxApi" }
+jsr173-ri = { group = "com.bea.xml", name = "jsr173-ri", version.ref = "jsr173Ri" }
+xercesimpl = { module = "xerces:xercesImpl", version.ref = "xercesimpl" }
+
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+
