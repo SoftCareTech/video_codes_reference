@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId = "com.softcaretech.excelapp"
-        minSdk = 21
+        minSdk = 27
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -33,15 +33,15 @@ android {
 
 dependencies {
     implementation(libs.appcompat)
-    implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    implementation(libs.google.material)
     implementation(libs.poi.ooxml )
     implementation(libs.poi)
+    implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation(libs.xercesimpl)
+  implementation(libs.stax.api) 
+
 
 }

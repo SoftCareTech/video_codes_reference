@@ -19,3 +19,11 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-dontwarn org.apache.poi.**
+-keep class org.apache.poi.** { *; }
+-dontwarn org.openxmlformats.**
+-keep class org.openxmlformats.** { *; }
+-dontwarn org.apache.xmlbeans.**
+-keep class org.apache.xmlbeans.** { *; }
+

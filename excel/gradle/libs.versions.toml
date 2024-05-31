@@ -11,8 +11,10 @@ materialVersion = "1.13.0-alpha02"
 poi = "5.2.5"
 openxml4j = "1.0-beta"
 staxApi = "1.0-2"
-jsr173Ri = "1.0"
 xercesimpl = "2.12.2"
+log4jCore = "3.0.0-beta2"
+woodstoxCore = "6.6.2"
+aaltoXml = "1.3.2"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -28,8 +30,10 @@ google-material = { group = "com.google.android.material", name = "material", ve
 poi = { group = "org.apache.poi", name = "poi", version = "4.0.1" }
 openxml4j = { group = "org.apache.poi", name = "openxml4j", version.ref = "openxml4j" }
 stax-api = { group = "javax.xml.stream", name = "stax-api", version.ref = "staxApi" }
-jsr173-ri = { group = "com.bea.xml", name = "jsr173-ri", version.ref = "jsr173Ri" }
-xercesimpl = { module = "xerces:xercesImpl", version.ref = "xercesimpl" }
+xercesimpl = { module = "xerces:xercesImpl", version = "2.7.1" }
+log4j-core = { group = "org.apache.logging.log4j", name = "log4j-core", version.ref = "log4jCore" }
+woodstox-core = { group = "com.fasterxml.woodstox", name = "woodstox-core", version.ref = "woodstoxCore" }
+aalto-xml = { group = "com.fasterxml", name = "aalto-xml", version = "1.0.0" }
 
 
 [plugins]

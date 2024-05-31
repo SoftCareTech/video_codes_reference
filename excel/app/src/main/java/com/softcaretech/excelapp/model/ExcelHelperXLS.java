@@ -1,40 +1,26 @@
 package com.softcaretech.excelapp.model;
 
-import static com.softcaretech.excelapp.MainActivity.TAG;
-
 import android.util.Log;
 
-import com.softcaretech.excelapp.MainActivity;
-
-import org.apache.poi.openxml4j.opc.OPCPackage;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbookType;
-import org.xml.sax.SAXNotRecognizedException;
-import org.xml.sax.SAXNotSupportedException;
-import org.xml.sax.XMLReader;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-
 /**
  * Helper class to handle Excel operations for Product objects.
  */
-public class ExcelHelper {
-    private XSSFWorkbook workbook;
-    private XSSFSheet sheet;
+public class ExcelHelperXLS {
+    private HSSFWorkbook workbook;
+    private HSSFSheet sheet;
     private final String filePath;
-    private OPCPackage pkg;
 
     /**
      * Constructor to open or create the workbook and sheet.
@@ -42,17 +28,25 @@ public class ExcelHelper {
      * @param filePath Path of the Excel file to create or update.
      * @throws IOException If an I/O error occurs.
      */
-    public ExcelHelper(String filePath) throws IOException {
-        this.filePath = filePath+".xlsx";
+    public ExcelHelperXLS(String filePath) throws IOException {
+        this.filePath = filePath+".xls";
 
     }
     public boolean open()   {
         File file = new File(filePath);
         if ( file.exists()   ) {
+
+
+
             // Open existing workbook
             try {
-                pkg = OPCPackage.open(file);
-               workbook = new XSSFWorkbook(pkg );
+                 FileInputStream fileIn = new FileInputStream(file);
+//                Log.d(MainActivity.TAG,"Excel "+fileIn.available());
+                //  workbook = new HSSFWorkbook(fileIn);
+           // OPCPackage pkg = OPCPackage.open(file);
+               workbook = new HSSFWorkbook(fileIn );
+//               //
+//                pkg.close();
                 sheet = workbook.getSheet("Products");
                 if (sheet == null) {
                     sheet = workbook.createSheet("Products");
@@ -64,7 +58,7 @@ public class ExcelHelper {
             }
         } else {
             // Create new workbook and sheet
-            workbook = new XSSFWorkbook();
+            workbook = new HSSFWorkbook();
             sheet = workbook.createSheet("Products");
             createHeaderRow(sheet);
             return true;
@@ -72,7 +66,9 @@ public class ExcelHelper {
 return   false;
     }
     public boolean openNew()   {
-            workbook = new XSSFWorkbook();
+        File file = new File(filePath);
+            // Create new workbook and sheet
+            workbook = new HSSFWorkbook();
             sheet = workbook.createSheet("Products");
             createHeaderRow(sheet);
             return true;
@@ -123,21 +119,32 @@ return   false;
      * @return true if the workbook was saved successfully, false otherwise.
      * @throws IOException If an I/O error occurs.
      */
-    public boolean save()   {
+    public boolean save() throws IOException {
+        try {
+            // Adjust column widths
+//            for (int i = 0; i < 5; i++) {
+//                sheet.autoSizeColumn(i);
+//            }
+
             // Write the workbook to a file
-            Log.d(TAG,filePath);
+            Log.d("Excel path",filePath);
             try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
-                workbook.setWorkbookType(XSSFWorkbookType.XLSX);
+
                 workbook.write(fileOut);
-                workbook.close();
-               if(pkg!=null) {
-                    pkg.close();
-                }
+                fileOut.close();
                 return true;
             }catch (IOException e) {
                 e.printStackTrace();
                 return false;
             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            // Close the workbook
+          workbook.close();
+        }
     }
 
     /**
@@ -167,7 +174,7 @@ return   false;
      *
      * @param sheet The sheet to add the header row to.
      */
-    private static void createHeaderRow(XSSFSheet sheet) {
+    private static void createHeaderRow(HSSFSheet sheet) {
         Row headerRow = sheet.createRow(0);
 
         Cell headerCell1 = headerRow.createCell(0);
