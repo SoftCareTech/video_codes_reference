@@ -36,7 +36,7 @@ with Excel files.
 
  1. Create a project or open an existing android project.
  2. Select
-  File->project structure->app
+  File->project structure->[app]
  3.  In declarative dependencies section
    Click add library ico(plus ico) -> library dependence
  //Search for "org.apache.poi"
@@ -52,13 +52,17 @@ with Excel files.
  Optional  Library for View
  Search for "com.google.android.material"
             -- add material
+   -code
+    use ExcelHelpXLS if version min sdk is less than 26
+    use ExcelHelper if you are using min sdk as 26 or above
+
  */
 
     ExecutorService executorService = Executors.newSingleThreadExecutor();
     private ProductAdapter productAdapter;
     private List<Product> productList;
 
-    private FloatingActionButton addProductButton;
+
     private ExcelHelperXLS excelHelper;
 
     @Override
@@ -78,7 +82,7 @@ with Excel files.
             dialog.setOnProductAddedListener(MainActivity.this);
             dialog.show(getSupportFragmentManager(), "AddProductBottomSheetDialog");
 
-//           Product  product=new Product("Lap", 10, 99.99,
+//           Product  product=new Product("Lap11", 10, 99.99,
 //                   TransactionType.SELL, "High");
 //            if (excelHelper.addProduct(product)) {
 //                productList.add(product);
@@ -107,7 +111,7 @@ with Excel files.
     protected void onResume() {
         super.onResume();
         // Load products and notify adapter
-        loadProducts();
+        loadProducts21();
     }
 
     private void loadProducts26() {
@@ -118,7 +122,6 @@ with Excel files.
             executorService.execute(new Runnable() {
                 @Override
                 public void run() {
-                    String result = "Result";
                    excelHelper.openNew ();
                     excelHelper.addProduct(new Product("Laptop1", 10, 999.99, TransactionType.SELL, "High-end gaming laptop"));
                     excelHelper.addProduct(new Product("Monitor", 5, 199.99, TransactionType.RECEIPT, "24-inch LED monitor"));
@@ -192,12 +195,13 @@ with Excel files.
 
     private void loadProducts21() {
         try {
-            File file = new File(this.getFilesDir(), "excel");
+            File file = new File(this.getFilesDir(), "excel_test");
             ExcelHelperXLS excelHelper = new ExcelHelperXLS(file.getAbsolutePath());
             ExcelHelperXLS  excelHelper1 = new ExcelHelperXLS(file.getAbsolutePath());
             executorService.execute(new Runnable() {
                 @Override
                 public void run() {
+                    //background
                     excelHelper.openNew ();
                     excelHelper.addProduct(new Product("Laptop1", 10, 999.99, TransactionType.SELL, "High-end gaming laptop"));
                     excelHelper.addProduct(new Product("Monitor", 5, 199.99, TransactionType.RECEIPT, "24-inch LED monitor"));
@@ -234,10 +238,7 @@ with Excel files.
             File file = new File(this.getFilesDir(), "excel");
             excelHelper = new ExcelHelperXLS(file.getAbsolutePath());
             executorService.execute(() -> {
-                excelHelper.openNew ();
-                excelHelper.addProduct(new Product("Laptop1", 10, 999.99, TransactionType.SELL, "High-end gaming laptop"));
-                excelHelper.addProduct(new Product("Monitor", 5, 199.99, TransactionType.RECEIPT, "24-inch LED monitor"));
-                try {
+                   try {
                     excelHelper.open();
                     List<Product> products =excelHelper.getProducts();
                     // Update UI from main thread

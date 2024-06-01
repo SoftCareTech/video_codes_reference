@@ -45,21 +45,15 @@ public class AddProductBottomSheetDialog extends BottomSheetDialogFragment {
         editTextDescription = view.findViewById(R.id.editTextDescription);
         spinnerTransactionType = view.findViewById(R.id.spinnerTransactionType);
         buttonSave = view.findViewById(R.id.buttonSave);
-
-        // Setup spinner (assuming you have an array of transaction types in your resources)
         // First, get the list of display names
         List<String> displayNames = TransactionType.getDisplayNames();
 
-// Convert the list to an array (optional, as ArrayAdapter can take a list directly)
-        String[] displayNameArray = displayNames.toArray(new String[0]);
-
-// Create the ArrayAdapter
+        // Create the ArrayAdapter
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, displayNames);
 
-// Set the dropdown view resource
+        // Set the dropdown view resource
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-// Set the adapter to the spinner
+        // Set the adapter to the spinner
         spinnerTransactionType.setAdapter(adapter);
 
 

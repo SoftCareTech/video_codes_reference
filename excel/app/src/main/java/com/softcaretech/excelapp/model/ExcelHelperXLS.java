@@ -1,5 +1,7 @@
 package com.softcaretech.excelapp.model;
 
+import static com.softcaretech.excelapp.MainActivity.TAG;
+
 import android.util.Log;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -30,7 +32,7 @@ public class ExcelHelperXLS {
      */
     public ExcelHelperXLS(String filePath) throws IOException {
         this.filePath = filePath+".xls";
-
+        Log.d(TAG, this.filePath);
     }
     public boolean open()   {
         File file = new File(filePath);
@@ -66,7 +68,6 @@ public class ExcelHelperXLS {
 return   false;
     }
     public boolean openNew()   {
-        File file = new File(filePath);
             // Create new workbook and sheet
             workbook = new HSSFWorkbook();
             sheet = workbook.createSheet("Products");

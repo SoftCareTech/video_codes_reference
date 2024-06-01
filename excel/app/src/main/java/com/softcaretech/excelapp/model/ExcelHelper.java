@@ -44,6 +44,7 @@ public class ExcelHelper {
      */
     public ExcelHelper(String filePath) throws IOException {
         this.filePath = filePath+".xlsx";
+        Log.d(TAG, filePath);
 
     }
     public boolean open()   {

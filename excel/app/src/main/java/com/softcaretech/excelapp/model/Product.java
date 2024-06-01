@@ -1,5 +1,7 @@
 package com.softcaretech.excelapp.model;
 
+import androidx.annotation.NonNull;
+
 /**
  * Class representing a product with its details.
  */
@@ -77,6 +79,7 @@ public class Product {
      *
      * @return A string containing the product details.
      */
+    @NonNull
     @Override
     public String toString() {
         return "Product{" +
