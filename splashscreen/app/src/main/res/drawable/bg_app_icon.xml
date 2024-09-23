@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Rotating spinner -->
+    <!-- OPrice Vector (centered) -->
+    <item android:drawable="@color/white"  />
+    <item android:drawable="@drawable/oprice"
+        android:gravity="center"
+        android:height="200dp"
+        android:width="200dp"
+   />
+
+<!--    <item android:drawable="@drawable/oprice_name"-->
+<!--        android:gravity="center"-->
+<!--        android:height="84dp"-->
+<!--        android:width="259dp"-->
+
+<!--        />-->
+    <item>
+        <rotate
+            android:fromDegrees="0"
+            android:toDegrees="360"
+            android:pivotX="50%"
+            android:pivotY="50%"
+            android:duration="1200"
+            android:repeatCount="infinite"
+            android:interpolator="@android:interpolator/linear">
+
+            <shape
+                android:shape="ring"
+                android:useLevel="false">
+
+                <size
+                    android:width="48dp"
+                    android:height="48dp"
+                    android:thickness="5dp" />
+
+                <gradient
+                    android:startColor="@android:color/darker_gray"
+                    android:endColor="@android:color/transparent"
+                    android:type="sweep" />
+            </shape>
+
+        </rotate>
+    </item>
+
+
+
+</layer-list>
+
+
+
+
