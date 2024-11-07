@@ -54,7 +54,7 @@ public class ProductDetailsAdapter extends RecyclerView.Adapter<ProductDetailsAd
             if (alreadyPurchased.contains(productDetails.getProductId())) {
                 holder.buyButton.setText("Paid");
                 holder.buyButton.setEnabled(false);
-                return;// return to avoid setting lisenter
+                return;// return to avoid setting listener
             }
         }
         // Set click listener to notify when a product is clicked
@@ -62,7 +62,7 @@ public class ProductDetailsAdapter extends RecyclerView.Adapter<ProductDetailsAd
             if (onProductClickListener != null) {
                 onProductClickListener.onProductClick(productDetails);
             }else{
-                Log.e(T, "NULL listener pass in the addapter");
+                Log.e(T, "NULL listener pass in the adapter");
             }
         });
     }

@@ -61,7 +61,6 @@ public class BuyProductActivity extends AppCompatActivity implements PurchasesUp
                 }));
         productsRecyclerView.setAdapter(productDetailsAdapter);
         progressBar = findViewById(R.id.progressBar);
-
         setupBillingClient();
     }
 
